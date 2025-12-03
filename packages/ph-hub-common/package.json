@@ -1,0 +1,25 @@
+{
+	"name": "@ph-hub/common",
+	"version": "1.0.0",
+	"license": "UNLICENSED",
+	"main": "lib/index.js",
+	"types": "lib/index.d.ts",
+	"typescript": {
+		"main": "./src/index.ts"
+	},
+	"scripts": {
+		"build": "tsc --build tsconfig.build.json",
+		"prepare": "pnpm build",
+		"test": "echo \"Error: run tests from root\" && exit 1"
+	},
+	"dependencies": {
+		"tslib": "2.3.0"
+	},
+	"devDependencies": {
+		"typescript": "5.1.6"
+	},
+	"files": [
+		"src/**/*",
+		"lib/**/*"
+	]
+}
