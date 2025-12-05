@@ -8,16 +8,17 @@ import { UsersSelectors } from './store/users/users.selectors';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
-	selector: 'ph-root',
-	imports: [RouterOutlet, AsyncPipe],
-	templateUrl: './app.html',
-	styleUrl: './app.scss',
+  selector: 'ph-root',
+  imports: [RouterOutlet, AsyncPipe],
+  templateUrl: './app.html',
+  styleUrl: './app.scss',
 })
 export class App implements OnInit {
-	private store = inject(Store);
-	user$: Observable<UserInterface> = inject(Store).select(UsersSelectors.user);
+  private store = inject(Store);
 
-    ngOnInit() {
-		this.store.dispatch(new LoadUsers());
-    }
+  user$: Observable<UserInterface> = inject(Store).select(UsersSelectors.user);
+
+  ngOnInit() {
+    this.store.dispatch(new LoadUsers());
+  }
 }

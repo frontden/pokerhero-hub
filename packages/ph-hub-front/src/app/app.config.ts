@@ -5,6 +5,7 @@ import { routes } from './app.routes';
 
 import { provideStore } from '@ngxs/store';
 import { UsersState } from './store/users/users.state';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -12,5 +13,6 @@ export const appConfig: ApplicationConfig = {
 		provideZoneChangeDetection({ eventCoalescing: true }),
 		provideRouter(routes),
 		provideStore([UsersState]),
+		provideHttpClient(),
 	]
 };

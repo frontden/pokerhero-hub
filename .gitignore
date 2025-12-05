@@ -2,3 +2,4 @@ node_modules/
 .idea
 packages/ph-hub-back/node_modules/
 packages/ph-hub-back/node_modules
+.env

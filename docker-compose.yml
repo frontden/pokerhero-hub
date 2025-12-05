@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: pokerhero-postgres
+    restart: unless-stopped
+    ports:
+      - "${DATABASE_PORT:-5432}:5432"
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_INITDB_ARGS: "-E UTF8 --locale=en_US.UTF-8"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - pokerhero-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: packages/ph-hub-back/Dockerfile
+    container_name: pokerhero-backend
+    restart: unless-stopped
+    ports:
+      - "${BACKEND_PORT:-3000}:3000"
+    environment:
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_NAME: ${DATABASE_NAME}
+      NODE_ENV: ${NODE_ENV}
+      PORT: ${BACKEND_PORT:-3000}
+    volumes:
+      - ./packages/ph-hub-back/src:/app/packages/ph-hub-back/src
+      - ./packages/ph-hub-common:/app/packages/ph-hub-common
+    networks:
+      - pokerhero-network
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: .
+      dockerfile: packages/ph-hub-front/Dockerfile
+    container_name: pokerhero-frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-4200}:4200"
+    environment:
+      API_URL: ${API_URL}
+    volumes:
+      - ./packages/ph-hub-front/src:/app/packages/ph-hub-front/src
+      - ./packages/ph-hub-common:/app/packages/ph-hub-common
+    networks:
+      - pokerhero-network
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  pokerhero-network:
+    driver: bridge
