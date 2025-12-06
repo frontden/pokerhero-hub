@@ -1,0 +1,12 @@
+<div class="ph-hero-avatar"
+    [style.width.px]="width()"
+    [style.height.px]="height()"
+    [style.background]="background()"
+    [style.border-radius.%]="borderRadius()"
+>
+    @for (detail of details(); track detail) {
+        <img [src]="detail"
+             class="ph-hero-avatar__img" />
+    }
+</div>
+

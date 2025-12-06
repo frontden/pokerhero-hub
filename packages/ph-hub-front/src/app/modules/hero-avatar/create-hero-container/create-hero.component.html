@@ -1,0 +1,48 @@
+<ph-hero-avatar [details]="heroLayers()"
+                [borderRadius]="50"
+                [width]="300"
+                [height]="300">
+</ph-hero-avatar>
+<!--<ph-hero-avatar [details]="heroLayers()"-->
+<!--                [borderRadius]="50" [width]="80"-->
+<!--                [height]="80">-->
+<!--</ph-hero-avatar>-->
+<div class="ph-create-hero__controls">
+    <div class="ph-create-hero__controls">
+        <button (click)="random()">random</button>
+    </div>
+
+    <div class="ph-create-hero__detail-types">
+        <div (click)="changeActiveType(detailType.HERO_BODY)"
+             [class.ph-create-hero__active-type]="selectedLayer() === detailType.HERO_BODY">
+            {{ detailType.HERO_BODY }}
+        </div>
+        <div (click)="changeActiveType(detailType.HERO_HAT)"
+             [class.ph-create-hero__active-type]="selectedLayer() === detailType.HERO_HAT">
+            {{ detailType.HERO_HAT }}
+        </div>
+        <div (click)="changeActiveType(detailType.HERO_EARRINGS)"
+             [class.ph-create-hero__active-type]="selectedLayer() === detailType.HERO_EARRINGS">{{ detailType.HERO_EARRINGS }}</div>
+        <div (click)="changeActiveType(detailType.HERO_MOUTH)"
+             [class.ph-create-hero__active-type]="selectedLayer() === detailType.HERO_MOUTH">{{ detailType.HERO_MOUTH }}</div>
+        <div (click)="changeActiveType(detailType.HERO_GLASSES)"
+             [class.ph-create-hero__active-type]="selectedLayer() === detailType.HERO_GLASSES">{{ detailType.HERO_GLASSES }}</div>
+    </div>
+
+   @for (heroDetail of heroDetails; track heroDetail.name) {
+       @if (heroDetail.name === selectedLayer()) {
+           <div class="ph-create-hero__details">
+               @for (detail of heroDetail.details; track detail) {
+                   @let detailPath = assetsPath + heroDetail.path + detail;
+                   <div class="ph-create-hero__detail"
+                        (click)="changeDetail(heroDetail.name, detailPath)"
+                        [class.ph-create-hero__active-detail]="heroLayers().includes(detailPath)">
+                       <img [src]="detailPath"
+                            class="ph-create-hero__detail-img" />
+                   </div>
+               }
+           </div>
+       }
+   }
+
+</div>
