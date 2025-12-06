@@ -1,9 +1,8 @@
 @let user = user$ | async;
 
-App is working!
+<b>Create your poker hero</b>
 {{ user?.email }}
 
-
-<ph-create-hero></ph-create-hero>
+<ph-create-hero [style.margin-top.px]="50"></ph-create-hero>
 
 <router-outlet></router-outlet>
