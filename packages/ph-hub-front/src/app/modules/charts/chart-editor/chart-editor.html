@@ -1,0 +1,8 @@
+<div class="ph-chart-editor">
+    @for (cell of cells(); track cell.label; let index = $index) {
+        <ph-chart-editor-cell (mousemove)="onCellMouseEnter(index)"
+                              (click)="onCellClicked(index)"
+                              [cell]="cell">
+        </ph-chart-editor-cell>
+    }
+</div>

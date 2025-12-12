@@ -1,0 +1,8 @@
+.ph-chart-editor {
+  max-width: 439px;
+  max-height: 403px;
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  column-gap: 3px;
+  row-gap: 1px;
+}

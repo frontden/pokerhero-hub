@@ -1,0 +1,39 @@
+.ph-chart-editor-cell {
+  border-radius: 10%;
+  border: 1px solid black;
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  box-sizing: border-box;
+  position: relative;
+  font-size: 12px;
+  height: 30px;
+}
+
+.ph-chart-editor-cell__zone {
+  height: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.ph-chart-editor-cell__title {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+
+.ph-chart-editor-cell__title_signed {
+  color: black;
+}
+
+.ph-chart-editor-cell_signed {
+  transform: scale(1.75);
+  border: 1px solid white;
+  color: white !important;
+  z-index: 1000;
+}
