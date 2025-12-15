@@ -4,7 +4,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './modules/database/entities/user.entity';
 import { Repository } from 'typeorm';
 
-
 @Injectable()
 export class AppService {
   constructor(
@@ -18,7 +17,15 @@ export class AppService {
     });
 
     return users.map((user) => ({
+      id: user.id,
       email: user.email,
+      name: user.name,
+      avatar: user.avatar,
+      emailVerified: user.emailVerified,
+      lastLoginAt: user.lastLoginAt,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+      accessLevel: user.accessLevel,
     }));
   }
 }

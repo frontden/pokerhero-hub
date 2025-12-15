@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { AccessLevel } from '../../../shared/constants';
 
 @Entity('users')
 export class UserEntity {
@@ -8,6 +9,24 @@ export class UserEntity {
   @Column({ unique: true })
   email: string;
 
+  @Column()
+  name: string;
+
+  @Column({ type: 'text', array: true, nullable: true })
+  avatar: string[];
+
+  @Column({ name: 'access_level', default: AccessLevel.Basic })
+  accessLevel: number;
+
+  @Column({ name: 'email_verified', default: false })
+  emailVerified: boolean;
+
+  @Column({ name: 'last_login_at', nullable: true })
+  lastLoginAt: Date;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: Date;
 }
