@@ -1,11 +1,25 @@
-<!--<ph-chart-editor-->
-<!--        [combinations]="mockChart.combinations"-->
-<!--&gt;</ph-chart-editor>-->
+<!--<div class="ph-charts__chart-for-view">-->
+<!--    <ph-chart-editor-actions-->
+<!--            [answers]="mockChartAnswers"-->
+<!--    ></ph-chart-editor-actions>-->
+<!--    <ph-chart-editor-->
+<!--            [combinations]="mockChart.combinations"-->
+<!--    ></ph-chart-editor>-->
+<!--</div>-->
 
-<ph-chart-editor
-        [isEditing]="true"
-        [activeActions]="mockActiveActions"
-        [combinations]="mockChart2.combinations"
-></ph-chart-editor>
 
+
+<div class="ph-charts__chart-for-edit">
+    <ph-chart-editor
+            [isEditing]="true"
+            [activeActions]="mockActiveActions"
+            [combinations]="mockChart2.combinations"
+    ></ph-chart-editor>
+
+    <ph-chart-editor-actions
+            [isEditing]="true"
+            [answers]="mockChartAnswers"
+            (answerSelected)="changeActionAnswer($event)"
+    ></ph-chart-editor-actions>
+</div>
 

@@ -33,7 +33,7 @@ export class ChartEditor {
 	}
 
 	onCellClicked(cellIndex: number): void {
-		if (this.isEditing() && this.activeActions().length && !this.cells()[cellIndex].actions.length) {
+		if (this.isEditing() && this.activeActions().length && !this.isActionsEqual(this.activeActions(), this.cells()[cellIndex].actions)) {
 			this.updateCell(cellIndex);
 		}
 	}
@@ -42,5 +42,12 @@ export class ChartEditor {
 		const updatedValue = this.cells();
 		updatedValue[cellIndex].actions = this.activeActions();
 		this.cells.set(updatedValue);
+	}
+
+	isActionsEqual(actions: ChartEditorCellZoneActionInterface[], previousActions: ChartEditorCellZoneActionInterface[]): boolean {
+		if (actions.length !== previousActions.length) {
+			return false;
+		}
+		return actions.every((action, index) => action.type === previousActions[index].type && action.frequency === previousActions[index].frequency);
 	}
 }

@@ -1,0 +1,26 @@
+.ph-chart-editor-actions__simple-answer-view {
+  display: flex;
+  align-items: center;
+  color: white;
+  gap: 5px;
+  font-weight: 600;
+}
+
+.ph-chart-editor-actions__simple-answer-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.ph-chart-editor-actions__view-mode {
+  padding: 10px 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.ph-chart-editor-actions__edit-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

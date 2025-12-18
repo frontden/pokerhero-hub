@@ -1,1 +1,29 @@
-<p>chart-editor-actions works!</p>
+@if (isEditing()) {
+    <div class="ph-chart-editor-actions__edit-mode">
+        @for (simpleAnswer of simpleAnswers(); track simpleAnswer) {
+            <ph-simple-answer-button
+                    [answer]="simpleAnswer"
+                    (selected)="answerSelected.emit(simpleAnswer)"
+            >
+            </ph-simple-answer-button>
+        }
+        Split answers:
+        @for (splitAnswer of splitAnswers(); track splitAnswer) {
+            <ph-split-answer-button
+                    [answer]="splitAnswer"
+                    (selected)="answerSelected.emit(splitAnswer)"
+            >
+            </ph-split-answer-button>
+        }
+    </div>
+} @else {
+    <div class="ph-chart-editor-actions__view-mode">
+        @for(viewModeAnswer of viewModeAnswers(); track viewModeAnswer) {
+            <div class="ph-chart-editor-actions__simple-answer-view">
+                <div class="ph-chart-editor-actions__simple-answer-circle" [style.background-color]="viewModeAnswer.color">
+                </div>
+                {{viewModeAnswer.label}}
+            </div>
+        }
+    </div>
+}

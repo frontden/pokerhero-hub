@@ -1,0 +1,3 @@
+<button (click)="selected.emit()">
+    {{action().type | actionTypeToLabel}}{{action().raiseAmount ? ' x' + action().raiseAmount : ''}}
+</button>

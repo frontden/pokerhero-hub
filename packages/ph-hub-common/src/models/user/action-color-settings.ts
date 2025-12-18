@@ -6,4 +6,5 @@ export interface ActionColorSettingsInterface {
 	raise2: string,
 	raise3: string,
 	allIn: string,
+	filter: string,
 }

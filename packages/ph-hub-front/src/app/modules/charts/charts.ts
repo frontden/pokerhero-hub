@@ -2,15 +2,18 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ChartEditor } from './chart-editor/chart-editor';
 import {
 	CHART_ACTIONS,
+	ChartAnswer,
 	ChartEditorCellZoneActionInterface,
 	ChartInterface,
 	DEFAULT_ACTION_COLOR_SETTINGS,
 } from '@ph-hub/common';
+import { ChartEditorActions } from './chart-editor-actions/chart-editor-actions';
 
 @Component({
 	selector: 'ph-charts',
 	imports: [
 		ChartEditor,
+		ChartEditorActions,
 	],
 	templateUrl: './charts.html',
 	styleUrl: './charts.scss',
@@ -29,6 +32,80 @@ export class Charts {
 	}
 	mockChart2: ChartInterface = {
 		id: 2,
-		combinations: '#0,n,n#1,n,n#2,n,n#3,n,n#4,n,n#5,n,n#6,n,n#7,n,n#8,n,n#9,n,n#10,n,n#11,n,n#12,n,n#13,n,n#14,n,n#15,n,n#16,n,n#17,n,n#18,n,n#19,n,n#20,n,n#21,n,n#22,n,n#23,n,n#24,n,n#25,n,n#26,n,n#27,n,n#28,n,n#29,n,n#30,n,n#31,n,n#32,n,n#33,n,n#34,n,n#35,n,n#36,n,n#37,n,n#38,n,n#39,n,n#40,n,n#41,n,n#42,n,n#43,n,n#44,n,n#45,n,n#46,n,n#47,n,n#48,n,n#49,n,n#50,n,n#51,n,n#52,n,n#53,n,n#54,n,n#55,n,n#56,n,n#57,n,n#58,n,n#59,n,n#60,n,n#61,n,n#62,n,n#63,n,n#64,n,n#65,n,n#66,n,n#67,n,n#68,n,n#69,n,n#70,n,n#71,n,n#72,n,n#73,n,n#74,n,n#75,n,n#76,n,n#77,n,n#78,n,n#79,n,n#80,n,n#81,n,n#82,n,n#83,n,n#84,n,n#85,n,n#86,n,n#87,n,n#88,n,n#89,n,n#90,n,n#91,n,n#92,n,n#93,n,n#94,n,n#95,n,n#96,n,n#97,n,n#98,n,n#99,n,n#100,n,n#101,n,n#102,n,n#103,n,n#104,n,n#105,n,n#106,n,n#107,n,n#108,n,n#109,n,n#110,n,n#111,n,n#112,n,n#113,n,n#114,n,n#115,n,n#116,n,n#117,n,n#118,n,n#119,n,n#120,n,n#121,n,n#122,n,n#123,n,n#124,n,n#125,n,n#126,n,n#127,n,n#128,n,n#129,n,n#130,n,n#131,n,n#132,n,n#133,n,n#134,n,n#135,n,n#136,n,n#137,n,n#138,n,n#139,n,n#140,n,n#141,n,n#142,n,n#143,n,n#144,n,n#145,n,n#146,n,n#147,n,n#148,n,n#149,n,n#150,n,n#151,n,n#152,n,n#153,n,n#154,n,n#155,n,n#156,n,n#157,n,n#158,n,n#159,n,n#160,n,n#161,n,n#162,n,n#163,n,n#164,n,n#165,n,n#166,n,n#167,n,n#168'
+		combinations: '#0,n,n#1,n,n#2,n,n#3,n,n#4,n,n#5,n,n#6,n,n#7,n,n#8,n,n#9,n,n#10,n,n#11,n,n#12,n,n#13,n,n#14,n,n#15,n,n#16,n,n#17,n,n#18,n,n#19,n,n#20,n,n#21,n,n#22,n,n#23,n,n#24,n,n#25,n,n#26,n,n#27,n,n#28,n,n#29,n,n#30,n,n#31,n,n#32,n,n#33,n,n#34,n,n#35,n,n#36,n,n#37,n,n#38,n,n#39,n,n#40,n,n#41,n,n#42,n,n#43,n,n#44,n,n#45,n,n#46,n,n#47,n,n#48,n,n#49,n,n#50,n,n#51,n,n#52,n,n#53,n,n#54,n,n#55,n,n#56,n,n#57,n,n#58,n,n#59,n,n#60,n,n#61,n,n#62,n,n#63,n,n#64,n,n#65,n,n#66,n,n#67,n,n#68,n,n#69,n,n#70,n,n#71,n,n#72,n,n#73,n,n#74,n,n#75,n,n#76,n,n#77,n,n#78,n,n#79,n,n#80,n,n#81,n,n#82,n,n#83,n,n#84,n,n#85,n,n#86,n,n#87,n,n#88,n,n#89,n,n#90,n,n#91,n,n#92,n,n#93,n,n#94,n,n#95,n,n#96,n,n#97,n,n#98,n,n#99,n,n#100,n,n#101,n,n#102,n,n#103,n,n#104,n,n#105,n,n#106,n,n#107,n,n#108,n,n#109,n,n#110,n,n#111,n,n#112,n,n#113,n,n#114,n,n#115,n,n#116,n,n#117,n,n#118,n,n#119,n,n#120,n,n#121,n,n#122,n,n#123,n,n#124,n,n#125,n,n#126,n,n#127,n,n#128,n,n#129,n,n#130,n,n#131,n,n#132,n,n#133,n,n#134,n,n#135,n,n#136,n,n#137,n,n#138,n,n#139,n,n#140,n,n#141,n,n#142,n,n#143,n,n#144,n,n#145,n,n#146,n,n#147,n,n#148,n,n#149,n,n#150,n,n#151,n,n#152,n,n#153,n,n#154,n,n#155,n,n#156,n,n#157,n,n#158,n,n#159,n,n#160,n,n#161,n,n#162,n,n#163,n,n#164,n,n#165,n,n#166,n,n#167,n,n#168,n,n'
+	}
+
+	mockChartAnswers: ChartAnswer[] = [
+		{
+			actions: [
+				{
+					type: CHART_ACTIONS.ALL_IN,
+					frequency: 100,
+					color: DEFAULT_ACTION_COLOR_SETTINGS.allIn,
+				},
+			]
+		},
+		{
+			actions: [
+				{
+					type: CHART_ACTIONS.CALL,
+					frequency: 100,
+					color: DEFAULT_ACTION_COLOR_SETTINGS.call,
+				},
+			]
+		},
+		{
+			actions: [
+				{
+					type: CHART_ACTIONS.FOLD,
+					frequency: 100,
+					color: DEFAULT_ACTION_COLOR_SETTINGS.fold,
+				},
+			]
+		},
+		{
+			actions: [
+				{
+					type: CHART_ACTIONS.FOLD,
+					frequency: 50,
+					color: DEFAULT_ACTION_COLOR_SETTINGS.fold,
+				},
+				{
+					type: CHART_ACTIONS.CALL,
+					frequency: 50,
+					color: DEFAULT_ACTION_COLOR_SETTINGS.call,
+				},
+			]
+		},
+		{
+			actions: [
+				{
+					type: CHART_ACTIONS.RAISE1,
+					frequency: 100,
+					color: DEFAULT_ACTION_COLOR_SETTINGS.raise1,
+					raiseAmount: 2.2,
+				},
+			]
+		},
+		{
+			actions: [
+				{
+					type: CHART_ACTIONS.RAISE2,
+					frequency: 75,
+					color: DEFAULT_ACTION_COLOR_SETTINGS.raise2,
+					raiseAmount: 3,
+				},
+				{
+					type: CHART_ACTIONS.FOLD,
+					frequency: 25,
+					color: DEFAULT_ACTION_COLOR_SETTINGS.fold,
+				},
+			]
+		},
+	];
+
+
+	changeActionAnswer(answer: ChartAnswer): void {
+		this.mockActiveActions = answer.actions;
 	}
 }
