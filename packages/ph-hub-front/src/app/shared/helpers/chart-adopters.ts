@@ -64,6 +64,8 @@ export function convertActionSymbolToType(symbol: string): CHART_ACTIONS {
 			return CHART_ACTIONS.RAISE3;
 		case CHART_ACTIONS_SYMBOL.ALL_IN:
 			return CHART_ACTIONS.ALL_IN;
+		case CHART_ACTIONS_SYMBOL.FILTER:
+			return CHART_ACTIONS.FILTER;
 		default:
 			return CHART_ACTIONS.NONE;
 	}
@@ -85,6 +87,29 @@ export function getActionColor(action: CHART_ACTIONS, colors: ActionColorSetting
 			return colors.raise3;
 		case CHART_ACTIONS.ALL_IN:
 			return colors.allIn;
+		case CHART_ACTIONS.FILTER:
+			return colors.filter;
+		default:
+			return '';
+	}
+}
+
+export function transformActionTypeToLabel(action: CHART_ACTIONS): string {
+	switch (action) {
+		case CHART_ACTIONS.FOLD:
+			return 'Fold';
+		case CHART_ACTIONS.CALL:
+			return 'Call';
+		case CHART_ACTIONS.CHECK:
+			return 'Check';
+		case CHART_ACTIONS.RAISE1:
+			return 'Raise';
+		case CHART_ACTIONS.RAISE2:
+			return 'Raise';
+		case CHART_ACTIONS.RAISE3:
+			return 'Raise';
+		case CHART_ACTIONS.ALL_IN:
+			return 'All-in';
 		default:
 			return '';
 	}

@@ -8,4 +8,5 @@ export const DEFAULT_ACTION_COLOR_SETTINGS: ActionColorSettingsInterface = {
 	raise2: '#8D6E63',
 	raise3: '#EF5350',
 	allIn: '#4CAF50',
+	filter: '#6BB5FF',
 }
