@@ -20,7 +20,7 @@
     <div class="ph-chart-editor-actions__view-mode">
         @for(viewModeAnswer of viewModeAnswers(); track viewModeAnswer) {
             <div class="ph-chart-editor-actions__simple-answer-view">
-                <div class="ph-chart-editor-actions__simple-answer-circle" [style.background-color]="viewModeAnswer.color">
+                <div class="ph-chart-editor-actions__simple-answer-square" [style.background-color]="viewModeAnswer.color">
                 </div>
                 {{viewModeAnswer.label}}
             </div>

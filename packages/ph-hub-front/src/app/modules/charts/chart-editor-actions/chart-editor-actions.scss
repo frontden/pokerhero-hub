@@ -1,22 +1,21 @@
 .ph-chart-editor-actions__simple-answer-view {
   display: flex;
-  align-items: center;
   color: white;
   gap: 5px;
   font-weight: 600;
+  font-size: 12px;
 }
 
-.ph-chart-editor-actions__simple-answer-circle {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
+.ph-chart-editor-actions__simple-answer-square {
+  width: 14px;
+  height: 14px;
+  border-radius: 15%;
 }
 
 .ph-chart-editor-actions__view-mode {
-  padding: 10px 0;
+  padding: 0 0 16px 0;
   display: flex;
-  gap: 10px;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .ph-chart-editor-actions__edit-mode {

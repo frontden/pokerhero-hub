@@ -8,6 +8,7 @@ import {
 	DEFAULT_ACTION_COLOR_SETTINGS,
 } from '@ph-hub/common';
 import { ChartEditorActions } from './chart-editor-actions/chart-editor-actions';
+import { DEFAULT_ANSWERS } from '@shared/constants';
 
 @Component({
 	selector: 'ph-charts',
@@ -36,33 +37,7 @@ export class Charts {
 	}
 
 	mockChartAnswers: ChartAnswer[] = [
-		{
-			actions: [
-				{
-					type: CHART_ACTIONS.ALL_IN,
-					frequency: 100,
-					color: DEFAULT_ACTION_COLOR_SETTINGS.allIn,
-				},
-			]
-		},
-		{
-			actions: [
-				{
-					type: CHART_ACTIONS.CALL,
-					frequency: 100,
-					color: DEFAULT_ACTION_COLOR_SETTINGS.call,
-				},
-			]
-		},
-		{
-			actions: [
-				{
-					type: CHART_ACTIONS.FOLD,
-					frequency: 100,
-					color: DEFAULT_ACTION_COLOR_SETTINGS.fold,
-				},
-			]
-		},
+		...DEFAULT_ANSWERS,
 		{
 			actions: [
 				{
@@ -74,16 +49,6 @@ export class Charts {
 					type: CHART_ACTIONS.CALL,
 					frequency: 50,
 					color: DEFAULT_ACTION_COLOR_SETTINGS.call,
-				},
-			]
-		},
-		{
-			actions: [
-				{
-					type: CHART_ACTIONS.RAISE1,
-					frequency: 100,
-					color: DEFAULT_ACTION_COLOR_SETTINGS.raise1,
-					raiseAmount: 2.2,
 				},
 			]
 		},
