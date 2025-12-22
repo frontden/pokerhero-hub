@@ -1,0 +1,128 @@
+@use '../../../../shared/scss/variables';
+
+.ph-login-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/assets/images/avatar_grid.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    z-index: -1;
+    filter: blur(2px);
+  }
+}
+
+.ph-login-card {
+  background: rgba(variables.$buttons-dark-1, 0.96);
+  border: 1px solid variables.$divider-1;
+  box-shadow: variables.$modal-shadow;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 560px;
+  overflow: hidden;
+}
+
+.ph-login-content {
+  padding: 24px;
+}
+
+.ph-login-content__header {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: variables.$white;
+  margin-bottom: 10px;
+}
+
+.ph-login-content__subtitle {
+  color: variables.$text-gray-2;
+  font-size: 14px;
+  text-align: center;
+}
+
+.ph-login-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  gap: 16px;
+}
+
+.ph-verify-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  gap: 8px;
+}
+
+.ph-verify-form__main {
+  gap: 24px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.ph-divider {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+  color: variables.$text-gray-2;
+  font-size: 14px;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: variables.$divider-1;
+  }
+
+  span {
+    padding: 0 16px;
+  }
+}
+
+.ph-error-message {
+  color: variables.$field-red-1;
+  font-size: 14px;
+  padding: 8px 12px;
+  background: variables.$bg-black-1;
+  height: 40px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.ph-login-btn {
+  width: 100%;
+}
+
+.ph-button__icon {
+  display: flex;
+  gap: 8px;
+}
+
+.ph-link-btn {
+  width: 100%;
+  text-decoration: underline;
+}
+
+.ph-code-input {
+  text-align: center;
+  font-size: 32px;
+  letter-spacing: 8px;
+  font-weight: 600;
+  height: 26px;
+}

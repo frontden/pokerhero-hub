@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
-import { UserEntity } from './entities/user.entity';
 import { getDataSourceOptions } from './functions/get-data-source-options';
 
 @Module({
@@ -18,7 +17,6 @@ import { getDataSourceOptions } from './functions/get-data-source-options';
         };
       },
     }),
-    TypeOrmModule.forFeature([UserEntity]),
   ],
 })
 export class DatabaseModule {}

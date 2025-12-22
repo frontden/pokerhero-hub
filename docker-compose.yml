@@ -33,6 +33,13 @@ services:
       DATABASE_NAME: ${DATABASE_NAME}
       NODE_ENV: ${NODE_ENV}
       PORT: ${BACKEND_PORT:-3000}
+      JWT_SECRET: ${JWT_SECRET}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      GOOGLE_CALLBACK_URL: ${GOOGLE_CALLBACK_URL}
+      LOOPS_API_KEY: ${LOOPS_API_KEY}
+      LOOPS_TRANSACTIONAL_ID: ${LOOPS_TRANSACTIONAL_ID}
+      FRONTEND_URL: ${FRONTEND_URL}
     volumes:
       - ./packages/ph-hub-back/src:/app/packages/ph-hub-back/src
       - ./packages/ph-hub-common:/app/packages/ph-hub-common
@@ -50,7 +57,7 @@ services:
     ports:
       - "${FRONTEND_PORT:-4200}:4200"
     environment:
-      API_URL: ${API_URL}
+      API_URL: http://localhost:${BACKEND_PORT:-3000}
     volumes:
       - ./packages/ph-hub-front/src:/app/packages/ph-hub-front/src
       - ./packages/ph-hub-common:/app/packages/ph-hub-common

@@ -1,4 +1,13 @@
+@let user = user$ | async;
+{{ user?.email }}
+
 <div class="ph-demo">
+    <button
+        ph-button
+        class="ph-demo__logout-btn"
+        [color]="'UNSTYLED'"
+        (click)="logout()"
+    >logout</button>
     <button (click)="changeFeature(features.CREATE_HERO)">create hero</button>
     <button (click)="changeFeature(features.CHARTS)">charts</button>
 </div>

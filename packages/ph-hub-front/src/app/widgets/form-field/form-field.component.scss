@@ -1,0 +1,246 @@
+@use '../../shared/scss/breakpoint';
+@use '../../shared/scss/mixins';
+@use '../../shared/scss/typography';
+@use '../../shared/scss/variables';
+
+@mixin placeholder {
+  color: variables.$text-gray-2;
+  overflow: hidden;
+  pointer-events: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ph-form-field, :host {
+  display: block;
+  //overflow: hidden;
+}
+
+::ng-deep.ph-form-field__control {
+  align-self: stretch;
+  border-width: 0;
+  background-color: transparent;
+  color: inherit;
+  flex-basis: 0;
+  flex-grow: 1;
+  outline-width: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+
+  @include typography.body2;
+
+  &::placeholder {
+    @include placeholder;
+  }
+}
+
+::ng-deep.ph-form-field__placeholder {
+  @include placeholder;
+}
+
+
+
+.ph-form-field__label {
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin ph-form-field__label_size_m {
+  @include typography.label3;
+}
+
+@mixin ph-form-field__label_size_l {
+  @include typography.label2
+}
+
+.ph-form-field__label_size_m {
+  @include ph-form-field__label_size_m;
+}
+
+.ph-form-field__label_size_l {
+  @include ph-form-field__label_size_l;
+}
+
+.ph-form-field__label_size_mml {
+  @include ph-form-field__label_size_m;
+
+  @include mixins.media-breakpoint(breakpoint.$l) {
+    @include ph-form-field__label_size_l;
+  }
+}
+
+.ph-form-field__label_size_mll {
+  @include ph-form-field__label_size_m;
+
+  @include mixins.media-breakpoint(breakpoint.$m) {
+    @include ph-form-field__label_size_l;
+  }
+}
+
+//region .ph-form-field-frame
+@mixin frame_size($height, $padding) {
+  height: $height;
+  padding: $padding;
+}
+
+@mixin frame_state($backgroundColor, $borderColor, $color) {
+  background-color: $backgroundColor;
+  border-color: $borderColor;
+  color: $color;
+}
+
+@mixin icon_size($size) {
+  height: $size;
+  width: $size;
+}
+
+// todo add hint
+.ph-form-field-frame {
+  $background-color: variables.$buttons-dark-1;
+  $border-color: variables.$buttons-dark-2;
+  $color: variables.$text-gray-2;
+
+  align-items: center;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 12px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 12px;
+  overflow: hidden;
+
+  @include frame_state($background-color, $border-color, $color);
+  @include typography.body2;
+
+  &:not(.ph-form-field-frame_state_disabled) {
+    cursor: pointer;
+  }
+
+  &:hover:not(.ph-form-field-frame_state_active):not(.ph-form-field-frame_state_error):not(.ph-form-field-frame_state_disabled) {
+    $background-color: variables.$buttons-dark-1;
+    $border-color: variables.$buttons-dark-2;
+    $color: variables.$text-gray-2;
+    box-shadow: 0 0 0 4px variables.$dark-shadow;
+
+
+    @include frame_state($background-color, $border-color, $color);
+  }
+}
+
+.ph-form-field-frame_textual {
+  &:not(.ph-form-field-frame_state_disabled) {
+    cursor: text;
+  }
+}
+
+@mixin ph-form-field-frame_size_m {
+ $height: 40px;
+ $padding: 10px 16px;
+
+ @include frame_size($height, $padding);
+}
+
+@mixin ph-form-field-frame_size_l {
+  $height: 48px;
+  $padding: 13px 20px;
+
+  @include frame_size($height, $padding);
+}
+
+.ph-form-field-frame_size_m {
+  @include ph-form-field-frame_size_m;
+}
+
+.ph-form-field-frame_size_l {
+  @include ph-form-field-frame_size_l;
+}
+
+.ph-form-field-frame_size_mml {
+  @include ph-form-field-frame_size_m;
+
+  @include mixins.media-breakpoint(breakpoint.$l) {
+    @include ph-form-field-frame_size_l;
+  }
+}
+
+.ph-form-field-frame_size_mll {
+  @include ph-form-field-frame_size_m;
+
+  @include mixins.media-breakpoint(breakpoint.$m) {
+    @include ph-form-field-frame_size_l;
+  }
+}
+
+.ph-form-field-frame_state_active {
+  $background-color: variables.$buttons-dark-1;
+  $border-color: variables.$buttons-dark-2;
+  $color: variables.$text-gray-3;
+  box-shadow: 0 0 0 4px variables.$dark-shadow;
+
+  @include frame_state($background-color, $border-color, $color);
+}
+
+.ph-form-field-frame_state_error {
+  $background-color: variables.$buttons-dark-1;
+  $border-color: variables.$buttons-dark-2;
+  $color: variables.$text-gray-3;
+  box-shadow: 0 0 0 4px variables.$red-shadow;
+
+  @include frame_state($background-color, $border-color, $color);
+}
+
+.ph-form-field-frame_state_disabled {
+  $background-color: variables.$buttons-dark-1;
+  $border-color: variables.$buttons-dark-2;
+  $color: variables.$text-gray-2;
+
+  @include frame_state($background-color, $border-color, $color);
+}
+
+.ph-form-field-frame__icon {
+  flex-shrink: 0;
+}
+
+@mixin ph-form-field-frame__icon_size_m {
+  @include icon_size(18px);
+}
+
+@mixin ph-form-field-frame__icon_size_l {
+  @include icon_size(18px);
+}
+
+.ph-form-field-frame__icon_size_m {
+  @include ph-form-field-frame__icon_size_m;
+}
+
+.ph-form-field-frame__icon_size_l {
+  @include ph-form-field-frame__icon_size_l;
+}
+
+.ph-form-field-frame__icon_size_mml {
+  @include ph-form-field-frame__icon_size_m;
+
+  @include mixins.media-breakpoint(breakpoint.$l) {
+    @include ph-form-field-frame__icon_size_l;
+  }
+}
+
+.ph-form-field-frame__icon_size_mll {
+  @include ph-form-field-frame__icon_size_m;
+
+  @include mixins.media-breakpoint(breakpoint.$m) {
+    @include ph-form-field-frame__icon_size_l;
+  }
+}
+
+.ph-form-field-frame__icon_expand {
+  $size: 16px;
+
+  height: $size;
+  margin-left: auto;
+  width: $size;
+}
+//endregion

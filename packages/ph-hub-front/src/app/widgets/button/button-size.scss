@@ -1,0 +1,105 @@
+@use '../../shared/scss/breakpoint';
+@use '../../shared/scss/mixins';
+@use '../../shared/scss/variables';
+
+@mixin ph-button_size(
+  $button-size,
+  $button-padding,            $button-icon-size,
+  $button_type_icon-padding,  $button_type_icon-icon-size,
+  $content-gap,
+) {
+  --ph-button-content--gap: #{$content-gap};
+
+  height: $button-size;
+  padding: $button-padding;
+
+  &.ph-button_type_icon {
+    padding: $button_type_icon-padding;
+    width: $button-size;
+
+    .ph-icon {
+      height: #{$button_type_icon-icon-size};
+      width: #{$button_type_icon-icon-size};
+    }
+  }
+
+  .ph-icon {
+    height: #{$button-icon-size};
+    width: #{$button-icon-size};
+  }
+}
+
+@mixin ph-button_size_l {
+  @include ph-button_size(
+      variables.$button_size_l--height,
+      13px 24px,  20px,
+      13px,       20px,
+      8px,
+  );
+}
+
+@mixin ph-button_size_m {
+  @include ph-button_size(
+      variables.$button_size_m--height,
+      10px 16px,  18px,
+      11px,       20px,
+      8px,
+  );
+}
+
+@mixin ph-button_size_s {
+  @include ph-button_size(
+      variables.$button_size_s--height,
+      8px 12px, 16px,
+      9px, 16px,
+      6px,
+  );
+}
+
+:host(.ph-button_size_l) {
+  @include ph-button_size_l;
+}
+
+:host(.ph-button_size_m) {
+  @include ph-button_size_m;
+}
+
+:host(.ph-button_size_s) {
+  @include ph-button_size_s;
+}
+
+:host(.ph-button_size_mml) {
+  @include ph-button_size_m;
+
+  @include mixins.media-breakpoint(breakpoint.$l) {
+    @include ph-button_size_l;
+  }
+}
+
+:host(.ph-button_size_mll) {
+  @include ph-button_size_m;
+
+  @include mixins.media-breakpoint(breakpoint.$m) {
+    @include ph-button_size_l;
+  }
+}
+
+:host(.ph-button_size_smm) {
+  @include ph-button_size_s;
+
+  @include mixins.media-breakpoint(breakpoint.$m) {
+    @include ph-button_size_m;
+  }
+}
+
+:host(.ph-button_size_sml) {
+  @include ph-button_size_s;
+
+  @include mixins.media-breakpoint(breakpoint.$m) {
+    @include ph-button_size_m;
+  }
+
+  @include mixins.media-breakpoint(breakpoint.$l) {
+    @include ph-button_size_l;
+  }
+}
