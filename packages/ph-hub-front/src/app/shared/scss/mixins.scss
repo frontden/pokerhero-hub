@@ -1,0 +1,19 @@
+@use 'breakpoint';
+
+@mixin media-breakpoint($from, $to: null) {
+  $max-width-offset: 0.02;
+
+  @if ($from and $to) {
+    @media (min-width: $from) and (max-width: $to - $max-width-offset) {
+      @content;
+    }
+  } @else if($from) {
+    @media (min-width: $from) {
+      @content;
+    }
+  } @else if($to) {
+    @media (max-width: $to - $max-width-offset) {
+      @content;
+    }
+  }
+}

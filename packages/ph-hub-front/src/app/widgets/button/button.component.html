@@ -1,0 +1,29 @@
+@if (iconName) {
+  <lucide-icon [name]="iconName" [size]="20"></lucide-icon>
+} @else {
+  <span class="ph-button-content">
+    @if (isLoading) {
+      <ph-spinner-icon
+          class="ph-button-content__icon"
+      ></ph-spinner-icon>
+    } @else {
+      @if (leftIconName) {
+        <lucide-icon
+            class="ph-button-content__icon"
+            [name]="leftIconName"
+            [size]="20"
+        ></lucide-icon>
+      }
+
+      <span class="ph-button-content__label"><ng-content></ng-content></span>
+
+      @if (rightIconName) {
+        <lucide-icon
+            class="ph-button-content__icon"
+            [name]="rightIconName"
+            [size]="20"
+        ></lucide-icon>
+      }
+    }
+  </span>
+}

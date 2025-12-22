@@ -1,0 +1,135 @@
+@use 'breakpoint';
+@use 'mixins';
+
+@mixin typography($l, $m, $s) {
+  font-size: $s;
+  font-style: normal;
+
+  @include mixins.media-breakpoint(breakpoint.$m) {
+    font-size: $m;
+  }
+
+  @include mixins.media-breakpoint(breakpoint.$l) {
+    font-size: $l;
+  }
+}
+
+@mixin h1 {
+  font-weight: 600;
+  line-height: 140%;
+
+  @include typography(32px, 28px, 24px);
+}
+
+@mixin h2 {
+  font-weight: 600;
+  line-height: 100%;
+
+  @include typography(34px, 30px, 30px);
+}
+
+@mixin h3 {
+  font-weight: 600;
+  line-height: 150%;
+
+  @include typography(26px, 24px, 22px);
+}
+
+@mixin h4 {
+  font-weight: 600;
+  line-height: 150%;
+
+  @include typography(20px, 18px, 16px);
+}
+
+@mixin h5 {
+  font-weight: 600;
+  line-height: 100%;
+
+  @include typography(16px, 14px, 13px);
+}
+
+@mixin subtitleBase {
+  font-weight: 500;
+  line-height: 140%;
+}
+
+$subtitleL--font-size: 18px;
+
+@mixin subtitleL {
+  font-size: $subtitleL--font-size;
+
+  @include subtitleBase;
+}
+
+@mixin subtitle {
+  @include subtitleBase;
+  @include typography($subtitleL--font-size, 14px, 14px);
+}
+
+@mixin body1 {
+  font-weight: 400;
+  line-height: 150%;
+
+  @include typography(16px, 14px, 14px);
+}
+
+@mixin body2 {
+  font-weight: 400;
+  line-height: 146%;
+
+  @include typography(14px, 14px, 14px);
+}
+
+@mixin body3 {
+  font-weight: 400;
+  line-height: 140%;
+
+  @include typography(13px, 13px, 13px);
+}
+
+@mixin label1 {
+  font-weight: 500;
+  line-height: 130%;
+
+  @include typography(16px, 14px, 13px);
+}
+
+@mixin label2 {
+  font-weight: 500;
+  line-height: 140%;
+
+  @include typography(14px, 14px, 14px);
+}
+
+@mixin label3 {
+  font-weight: 500;
+  line-height: 140%;
+
+  @include typography(13px, 13px, 12px);
+}
+
+@mixin hint1 {
+  font-weight: 400;
+  line-height: 130%;
+
+  @include typography(12px, 11px, 10px);
+}
+
+@mixin hint2 {
+  font-weight: 400;
+  line-height: 130%;
+
+  @include typography(10px, 10px, 10px);
+}
+
+@mixin counter {
+  font-weight: 400;
+  line-height: 100%;
+
+  @include typography(10px, 8px, 8px);
+
+  @include mixins.media-breakpoint((breakpoint.$m)) {
+    line-height: 90%;
+  }
+}

@@ -1,21 +1,15 @@
-import { ChangeDetectionStrategy, Component, HostListener, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Store } from '@ngxs/store';
-import { UserInterface } from '@ph-hub/common';
-import { Observable } from 'rxjs';
-import { UsersSelectors } from './store/users/users.selectors';
-import { AsyncPipe } from '@angular/common';
 import { AppService } from './services/app.service';
-import { LoadUsers } from './store/users/users.actions';
 
 @Component({
   selector: 'ph-root',
-  imports: [RouterOutlet, AsyncPipe],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class App implements OnInit {
+export class App {
   @HostListener('window:mouseup') onMouseUp() {
     this.appService.changeMouseDownState(false);
   }
@@ -25,13 +19,5 @@ export class App implements OnInit {
   }
 
   constructor(private appService: AppService) {
-  }
-
-  private store = inject(Store);
-
-  user$: Observable<UserInterface> = inject(Store).select(UsersSelectors.user);
-
-  ngOnInit() {
-    this.store.dispatch(new LoadUsers());
   }
 }

@@ -1,0 +1,44 @@
+$breakpoint-tablet-landscape: 1180px;
+
+$white: #FFFFFF;
+
+$buttons-disabled: #F7F8F9;
+$buttons-disabled-element: #C4C8D4;
+
+$bg-black-1: #131619;
+
+$buttons-transparent: transparent;
+
+$buttons-black-1: #0D0F10;
+
+$buttons-green-1: #B6F09C;
+$buttons-green-2: #C8F4B4;
+$buttons-green-3: #DBF7CD;
+
+$buttons-dark-1: #1A1D21;
+$buttons-dark-2: #363A3D;
+$buttons-dark-3: #686B6E;
+
+$text-dark-1: #0C1132;
+$text-gray-1: #686B6E;
+$text-gray-2: #9B9C9E;
+$text-gray-3: #CDCECF;
+$text-gray-4: #E8E9E9;
+
+$text-green-1: #B6F09C;
+$text-green-2: #C8F4B4;
+$text-green-3: #DBF7CD;
+
+$field-red-1: #D0302F;
+
+$red-shadow: rgba($field-red-1, 0.24);
+$dark-shadow: rgba($buttons-dark-2, 0.24);
+$modal-shadow: 0 8px 12px 0 #FFFFFF0A inset, 0 24px 64px -16px #0000003D, 16px 24px 64px -24px #FFFFFF0A inset;
+
+$glass-1: linear-gradient(117.58deg, rgba(215, 237, 237, 0.16) -47.79%, rgba(204, 235, 235, 0) 100%);
+
+$divider-1: #FFFFFF14;
+
+$button_size_s--height: 32px;
+$button_size_m--height: 40px;
+$button_size_l--height: 48px;

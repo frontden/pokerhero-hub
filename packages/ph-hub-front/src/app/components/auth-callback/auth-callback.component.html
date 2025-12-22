@@ -1,0 +1,13 @@
+<div class="ph-auth-callback-container">
+  <div class="ph-auth-callback-card">
+    <div class="ph-auth-callback__header">Processing login...</div>
+    @if (error) {
+      <div class="ph-error-message">{{ error }}</div>
+    } @else {
+      <ph-spinner-icon
+          [size]="40"
+          class="ph-auth-callback-spinner"
+      ></ph-spinner-icon>
+    }
+  </div>
+</div>

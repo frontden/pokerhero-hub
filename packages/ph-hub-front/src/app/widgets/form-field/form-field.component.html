@@ -1,0 +1,45 @@
+@if (label) {
+  <div
+    class="ph-form-field__label"
+    [class.ph-form-field__label_size_m]="size === FormFieldSize.M"
+    [class.ph-form-field__label_size_l]="size === FormFieldSize.L"
+    [class.ph-form-field__label_size_mml]="size === FormFieldResponsiveSize.MML"
+    [class.ph-form-field__label_size_mll]="size === FormFieldResponsiveSize.MLL"
+  >
+    {{ label }}
+  </div>
+}
+
+<!--eslint-disable-next-line  @angular-eslint/template/click-events-have-key-events, @angular-eslint/template/interactive-supports-focus-->
+<div
+  class="ph-form-field-frame"
+  [class.ph-form-field-frame_size_m]="size === FormFieldSize.M"
+  [class.ph-form-field-frame_size_l]="size === FormFieldSize.L"
+  [class.ph-form-field-frame_size_mml]="size === FormFieldResponsiveSize.MML"
+  [class.ph-form-field-frame_size_mll]="size === FormFieldResponsiveSize.MLL"
+  [class.ph-form-field-frame_state_active]="active$ | async"
+  [class.ph-form-field-frame_state_disabled]="isDisabled$ | async"
+  [class.ph-form-field-frame_state_error]="invalid$ | async"
+  [class.ph-form-field-frame_textual]="isTextual"
+  (click)="onAreaClick()"
+>
+  @if (iconName) {
+    <lucide-icon
+      class="ph-form-field-frame__icon"
+      [class.ph-form-field-frame__icon_size_m]="size === FormFieldSize.M"
+      [class.ph-form-field-frame__icon_size_l]="size === FormFieldSize.L"
+      [class.ph-form-field-frame__icon_size_mml]="size === FormFieldResponsiveSize.MML"
+      [class.ph-form-field-frame__icon_size_mll]="size === FormFieldResponsiveSize.MLL"
+      [name]="iconName"
+    ></lucide-icon>
+  }
+
+  <ng-content></ng-content>
+
+  @if (expandable) {
+    <lucide-icon
+      class="ph-form-field-frame__icon ph-form-field-frame__icon_expand"
+      [name]="'chevron-down'"
+    ></lucide-icon>
+  }
+</div>

@@ -1,0 +1,8 @@
+export enum ButtonColor {
+  PRIMARY = 'PRIMARY',
+  SECONDARY = 'SECONDARY',
+  TERTIARY = 'TERTIARY',
+  GHOST = 'GHOST',
+  GLASS = 'GLASS',
+  UNSTYLED = 'UNSTYLED',
+}

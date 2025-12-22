@@ -1,0 +1,142 @@
+@use '../../shared/scss/breakpoint';
+@use '../../shared/scss/mixins';
+@use '../../shared/scss/typography';
+@use '../../shared/scss/variables';
+
+@mixin ph-button-color-variant(
+  $defaultBackgroundColor, $defaultBorderColor, $defaultColor,
+  $hoverBackgroundColor, $hoverBorderColor, $hoverColor,
+  $activeBackgroundColor, $activeBorderColor, $activeColor,
+  $disabledBackgroundColor, $disabledBorderColor, $disabledColor,
+) {
+  background-color: $defaultBackgroundColor;
+  border-color: $defaultBorderColor;
+  color: $defaultColor;
+
+  &:hover:not(.ph-button_disabled) {
+    background-color: $hoverBackgroundColor;
+    border-color: $hoverBorderColor;
+    color: $hoverColor;
+  }
+
+  /*
+    Important note: If the selector has the same specificity as the hover selector, the styles should be defined below
+    the hover styles.
+   */
+  &:active:not(.ph-button_disabled) {
+    background-color: $activeBackgroundColor;
+    border-color: $activeBorderColor;
+    color: $activeColor;
+  }
+
+  &.ph-button_disabled {
+    //background-color: $disabledBackgroundColor;
+    //border-color: $disabledBorderColor;
+    //color: $disabledColor;
+    opacity: 0.5;
+  }
+}
+
+.ph-button, :host {
+  align-items: center;
+  border: 1px solid;
+  border-radius: 12px;
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  overflow: hidden;
+  text-decoration: none;
+
+  &:not(.ph-button_disabled) {
+    cursor: pointer;
+  }
+
+  ph-icon {
+    flex-shrink: 0;
+    height: var(--ph-button--icon-size);
+    width: var(--ph-button--icon-size);
+  }
+}
+
+:host(.ph-button_disabled) {
+  //pointer-events: none;
+  //opacity: 0.5;
+  cursor: not-allowed;
+}
+
+//region Color class names
+:host(.ph-button_color_primary) {
+  @include ph-button-color-variant(
+    variables.$buttons-green-1, variables.$buttons-green-1, variables.$text-dark-1,
+    variables.$buttons-green-2, variables.$buttons-green-2, variables.$text-dark-1,
+    variables.$buttons-green-3, variables.$buttons-green-3, variables.$text-dark-1,
+    variables.$buttons-disabled, variables.$buttons-disabled, variables.$buttons-disabled-element,
+  );
+}
+
+:host(.ph-button_color_secondary) {
+  @include ph-button-color-variant(
+    variables.$buttons-transparent, variables.$buttons-green-1, variables.$text-green-1,
+    variables.$buttons-transparent, variables.$buttons-green-2, variables.$text-green-2,
+    variables.$buttons-transparent, variables.$buttons-green-3, variables.$text-green-3,
+    variables.$buttons-disabled, variables.$buttons-disabled, variables.$buttons-disabled-element,
+  );
+}
+
+:host(.ph-button_color_tertiary) {
+  @include ph-button-color-variant(
+    variables.$buttons-dark-1, variables.$buttons-dark-1, variables.$text-gray-2,
+    variables.$buttons-dark-2, variables.$buttons-dark-2, variables.$text-gray-3,
+    variables.$buttons-dark-3, variables.$buttons-dark-3, variables.$text-gray-4,
+    variables.$buttons-disabled, variables.$buttons-disabled, variables.$buttons-disabled-element,
+  );
+}
+
+:host(.ph-button_color_ghost) {
+  @include ph-button-color-variant(
+      variables.$buttons-transparent, variables.$buttons-transparent, variables.$text-gray-1,
+      variables.$buttons-transparent, variables.$buttons-transparent, variables.$text-gray-2,
+      variables.$buttons-transparent, variables.$buttons-transparent, variables.$text-gray-3,
+      variables.$buttons-disabled, variables.$buttons-disabled, variables.$buttons-disabled-element,
+  );
+}
+
+:host(.ph-button_color_glass) {
+  @include ph-button-color-variant(
+      variables.$buttons-transparent, variables.$buttons-dark-1, variables.$text-gray-2,
+      variables.$buttons-transparent, variables.$buttons-dark-1, variables.$text-gray-3,
+      variables.$buttons-transparent, variables.$buttons-dark-1, variables.$text-gray-4,
+      variables.$buttons-disabled, variables.$buttons-disabled, variables.$buttons-disabled-element,
+  );
+  background: variables.$glass-1;
+}
+
+:host(.ph-button_color_unstyled) {
+  &.ph-button_disabled {
+    opacity: 0.5;
+  }
+}
+//endregion
+
+//region .ph-button-content
+.ph-button-content {
+  align-items: center;
+  display: flex;
+  gap: var(--ph-button-content--gap);
+  overflow: hidden;
+}
+
+.ph-button-content__icon {
+  flex-shrink: 0;
+}
+
+.ph-button-content__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @include typography.label1;
+}
+//endregion
+
+
