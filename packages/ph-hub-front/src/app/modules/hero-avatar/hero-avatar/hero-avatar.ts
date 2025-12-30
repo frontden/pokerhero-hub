@@ -12,5 +12,6 @@ export class HeroAvatar {
     width = input<number>(400);
     height = input<number>(400);
     borderRadius = input<number>(0);
-    background = input<string>('#D9EBED');
+    background = input<string>('#1A1D21');
+    borderColor = input<string>('#363A3D');
 }

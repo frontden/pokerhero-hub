@@ -87,7 +87,7 @@ export class AuthService {
       user = this.userRepository.create({
         email,
         name: googleProfile.name || email.split('@')[0],
-        avatar: googleProfile.picture ? [googleProfile.picture] : null,
+        avatar: null,
         googleId: googleProfile.sub,
         emailVerified: true,
         accessLevel: 0,

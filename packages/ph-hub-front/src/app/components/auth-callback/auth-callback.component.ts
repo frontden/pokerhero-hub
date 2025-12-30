@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpinnerIconComponent } from '../../modules/icons/components/spinner/spinner-icon.component';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'ph-auth-callback',
@@ -10,12 +12,11 @@ import { SpinnerIconComponent } from '../../modules/icons/components/spinner/spi
   styleUrls: ['./auth-callback.component.scss']
 })
 export class AuthCallbackComponent implements OnInit {
-  error: string | null = null;
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private http = inject(HttpClient);
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-  ) {}
+  error: string | null = null;
 
   ngOnInit() {
     const params = this.route.snapshot.queryParams;
@@ -44,9 +45,8 @@ export class AuthCallbackComponent implements OnInit {
           return;
         }
 
-        setTimeout(() => {
-          this.router.navigate(['/']).then();
-        }, 1000);
+        this.checkOnboardingStatus();
+
       } catch (err) {
         this.error = 'Failed to save authentication data';
       }
@@ -55,7 +55,33 @@ export class AuthCallbackComponent implements OnInit {
 
       setTimeout(() => {
         this.router.navigate(['/login']);
-      }, 2000);
+      }, 3000);
     }
+  }
+
+  private checkOnboardingStatus() {
+    this.http.get<any>(`${environment.apiUrl}/auth/me`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    }).subscribe({
+      next: (user) => {
+        if (!user.onboardingCompleted) {
+          setTimeout(() => {
+            this.router.navigate(['/start']);
+          }, 1000);
+        } else {
+          setTimeout(() => {
+            this.router.navigate(['/']);
+          }, 1000);
+        }
+      },
+      error: () => {
+        this.error = 'Failed to fetch user information';
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 3000);
+      }
+    });
   }
 }

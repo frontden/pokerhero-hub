@@ -5,6 +5,9 @@ import { AuthCallbackComponent } from './components/auth-callback/auth-callback.
 import { LoginComponent } from './modules/auth/components/login/login.component';
 import { authGuard } from './guards/auth.guard';
 import { guestGuard } from './guards/guest.guard';
+import { OnboardingComponent } from './modules/onboarding/components/onboarding/onboarding.component';
+import { onboardingGuard } from './guards/onboarding.guard';
+import { onboardingCompleteGuard } from './guards/onboarding-complete.guard';
 
 export const routes: Routes = [
 	{
@@ -22,9 +25,14 @@ export const routes: Routes = [
 		component: AuthCallbackComponent,
 	},
 	{
+		path: 'start',
+		component: OnboardingComponent,
+		canActivate: [authGuard, onboardingCompleteGuard],
+	},
+	{
 		path: 'demo',
 		component: Demo,
-		canActivate: [authGuard],
+		canActivate: [authGuard, onboardingGuard],
 		children: demoRoutes,
 	},
 ];

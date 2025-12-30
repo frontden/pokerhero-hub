@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import {
-  ChevronDown, LoaderCircle,
+  ChevronDown,
+  Dices,
+  LoaderCircle,
   LucideAngularModule,
   Mail,
+  XIcon,
 } from 'lucide-angular';
 
 @NgModule({
@@ -11,6 +14,8 @@ import {
       Mail,
       ChevronDown,
       LoaderCircle,
+      Dices,
+      XIcon,
     })
   ],
   exports: [LucideAngularModule]

@@ -3,6 +3,7 @@
     [style.height.px]="height()"
     [style.background]="background()"
     [style.border-radius.%]="borderRadius()"
+    [style.border-color]="borderColor()"
 >
     @for (detail of details(); track detail) {
         <img [src]="detail"

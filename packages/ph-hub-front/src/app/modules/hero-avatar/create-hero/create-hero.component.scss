@@ -1,38 +1,56 @@
+@use '../../../shared/scss/variables';
+
 :host {
   display: flex;
-  gap: 50px;
+  gap: 16px;
+  flex-direction: column;
 }
 
 .ph-create-hero__detail-types {
   display: flex;
-  gap: 10px;
+  gap: 16px;
   padding: 10px 0;
   cursor: pointer;
+  font-size: 14px;
+  color: variables.$text-gray-2;
 }
 
 .ph-create-hero__active-type {
   text-decoration: underline;
+  text-decoration-color: variables.$buttons-green-1;
+  text-underline-offset: 4px;
+  color: variables.$buttons-green-1;
+}
+
+.ph-create-hero__view {
+  display: flex;
+  justify-content: space-between;
 }
 
 .ph-create-hero__details {
   display: flex;
   gap: 10px;
-  width: 500px;
-  max-height: 240px;
-  overflow-y: scroll;
+  height: 160px;
+  overflow-y: auto;
   flex-wrap: wrap;
+
+  border-top: 1px solid variables.$divider-1;
+  border-bottom: 1px solid variables.$divider-1;
+  padding: 8px 0;
 }
 
 .ph-create-hero__detail {
   position: relative;
   width: 60px;
   height: 60px;
-  background: #D9EBED;
-  border: 1px solid gainsboro;
+  background: variables.$buttons-dark-1;
+  border: 1px solid variables.$buttons-dark-2;
+  border-radius: 12px;
+  cursor: pointer;
 }
 
 .ph-create-hero__active-detail {
-  border: 1px solid orangered;
+  border: 1px solid variables.$buttons-green-1;
 }
 
 .ph-create-hero__detail-img {
@@ -45,4 +63,6 @@
 
   object-fit: contain;
   pointer-events: none;
+
+  transform: scale(1.2);
 }

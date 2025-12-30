@@ -1,27 +1,29 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap, BehaviorSubject } from 'rxjs';
+import { Observable, tap, BehaviorSubject, shareReplay } from 'rxjs';
 import { Router } from '@angular/router';
-import { UserInterface } from '@ph-hub/common';
+import { User } from '@ph-hub/common';
 
 interface AuthResponse {
   accessToken: string;
   refreshToken: string;
-  user: UserInterface;
+  user: User;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private http = inject(HttpClient);
+  private router = inject(Router);
+
   private readonly apiUrl = 'http://localhost:3000/auth';
-  private currentUserSubject = new BehaviorSubject<UserInterface | null>(null);
+  private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
 
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-  ) {
+  private currentUserCache$: Observable<User> | null = null;
+
+  constructor() {
     this.loadCurrentUser();
   }
 
@@ -55,9 +57,23 @@ export class AuthService {
     });
   }
 
-  getCurrentUser(): Observable<UserInterface> {
-    return this.http.get<UserInterface>(`${this.apiUrl}/me`)
-      .pipe(tap(user => this.currentUserSubject.next(user)));
+  getCurrentUser(): Observable<User> {
+    if (this.currentUserCache$) {
+      return this.currentUserCache$;
+    }
+
+    this.currentUserCache$ = this.http.get<User>(`${this.apiUrl}/me`).pipe(
+      tap(user => {
+        this.currentUserSubject.next(user);
+      }),
+      shareReplay(1)
+    );
+
+    return this.currentUserCache$;
+  }
+
+  clearUserCache(): void {;
+    this.currentUserCache$ = null;
   }
 
   private loadCurrentUser(): void {
@@ -72,6 +88,10 @@ export class AuthService {
     localStorage.setItem('accessToken', response.accessToken);
     localStorage.setItem('refreshToken', response.refreshToken);
     this.currentUserSubject.next(response.user);
+
+    this.clearUserCache();
+
+    this.redirectAfterLogin(response.user);
   }
 
   private handleLogout(): void {
@@ -79,7 +99,17 @@ export class AuthService {
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('deviceFingerprint');
     this.currentUserSubject.next(null);
+
+    this.clearUserCache();
     this.router.navigate(['/login']);
+  }
+
+  redirectAfterLogin(user: User): void {
+    if (!user.onboardingCompleted) {
+      this.router.navigate(['/start']);
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 
   isAuthenticated(): boolean {

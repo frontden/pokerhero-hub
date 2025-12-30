@@ -1,17 +1,19 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserInterface } from '@ph-hub/common';
+import { User } from '@ph-hub/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+  private http = inject(HttpClient);
+
   private readonly apiUrl = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
-  getUsers(): Observable<UserInterface[]> {
-    return this.http.get<UserInterface[]>(`${this.apiUrl}/users`);
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/users`);
   }
 }
