@@ -4,8 +4,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
 } from 'typeorm';
 import { AccessLevel } from '../../../shared/constants';
+import { UserPreferencesEntity } from './user-preferences.entity';
 
 @Entity('users')
 export class UserEntity {
@@ -41,6 +43,18 @@ export class UserEntity {
 
   @Column({ name: 'token_expires_at', nullable: true })
   tokenExpiresAt: Date;
+
+  @Column({ name: 'onboarding_completed', default: false })
+  onboardingCompleted: boolean;
+
+  @Column({ nullable: true })
+  nickname: string;
+
+  @OneToOne(() => UserPreferencesEntity, (preferences) => preferences.user, {
+    eager: true,
+    cascade: true,
+  })
+  preferences: UserPreferencesEntity;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

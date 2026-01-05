@@ -1,0 +1,25 @@
+@mixin background-container(
+  $image: '/assets/images/avatar_grid.png',
+  $opacity: 0.5,
+  $blur: 2px
+) {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url(#{$image});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: $opacity;
+    z-index: -1;
+    filter: blur($blur);
+  }
+}

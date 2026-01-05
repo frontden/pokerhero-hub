@@ -1,0 +1,243 @@
+<div class="ph-onboarding-container">
+  <div class="ph-onboarding-card">
+    <div class="ph-progress-container">
+      <div class="ph-progress-bar" [style.width.%]="getProgressPercent()"></div>
+    </div>
+
+    <div class="ph-step-indicator">
+      Step {{ currentStep() }} of {{ totalSteps }}
+    </div>
+
+    @if (error()) {
+      <div class="ph-error-message">
+        {{ error() }}
+      </div>
+    }
+
+    @if (currentStep() === 1) {
+      <div class="ph-step-content">
+        <div class="ph-onboarding-content__header">
+          Create Your Hero
+        </div>
+        <div class="ph-onboarding-content__subtitle">
+          Choose your nickname and customize your avatar
+        </div>
+
+        <form [formGroup]="profileForm" class="ph-onboarding-form">
+          <div class="ph-form-group">
+            <ph-form-field
+                [size]="'M'"
+            >
+              <input
+                  type="text"
+                  formControlName="nickname"
+                  phFormFieldControl
+                  placeholder="Enter your nickname"
+              >
+            </ph-form-field>
+          </div>
+        </form>
+
+        <div class="ph-avatar-section">
+          <ph-create-hero
+              (avatarChange)="onAvatarChange($event)"
+              [initialAvatar]="avatarLayers()">
+          </ph-create-hero>
+        </div>
+
+        <div class="ph-step-actions">
+          <button
+              class="ph-onboarding-btn"
+              ph-button
+              [disabled]="!profileForm.valid || avatarLayers().length === 0"
+              (click)="nextStep()"
+              [size]="'M'"
+          >
+            Continue
+          </button>
+        </div>
+
+      </div>
+    }
+
+    @if (currentStep() === 2) {
+      <div class="ph-step-content">
+        <div class="ph-onboarding-content__header">
+          Your Poker Profile
+        </div>
+
+        <div class="ph-onboarding-content__subtitle">
+          Tell us about your poker preferences
+        </div>
+
+        <form [formGroup]="preferencesForm" class="ph-onboarding-preferences-form">
+          <div class="ph-form-section">
+            <div class="ph-onboarding-content__label">
+              What do you play?
+            </div>
+
+            <div class="ph-radio-group">
+              <label class="ph-radio-card">
+                <input
+                    type="radio"
+                    formControlName="gameType"
+                    value="spin"
+                    class="ph-radio-input"
+                />
+                <div class="ph-radio-content">
+                  <span class="ph-radio-icon">🎡</span>
+                  <div class="ph-radio-text">
+                    <span class="ph-radio-title">Spin & Go</span>
+                    <span class="ph-radio-desc">Fast-paced 3-max tournaments</span>
+                  </div>
+                  <span class="ph-radio-check">✓</span>
+                </div>
+              </label>
+
+              <label class="ph-radio-card">
+                <input
+                    type="radio"
+                    formControlName="gameType"
+                    value="mtt"
+                    class="ph-radio-input"
+                />
+                <div class="ph-radio-content">
+                  <span class="ph-radio-icon">🏆</span>
+                  <div class="ph-radio-text">
+                    <span class="ph-radio-title">MTT</span>
+                    <span class="ph-radio-desc">Multi-table tournaments</span>
+                  </div>
+                  <span class="ph-radio-check">✓</span>
+                </div>
+              </label>
+
+              <label class="ph-radio-card">
+                <input
+                    type="radio"
+                    formControlName="gameType"
+                    value="cash"
+                    class="ph-radio-input"
+                />
+                <div class="ph-radio-content">
+                  <span class="ph-radio-icon">💰</span>
+                  <div class="ph-radio-text">
+                    <span class="ph-radio-title">Cash Games</span>
+                    <span class="ph-radio-desc">Ring games & Zoom</span>
+                  </div>
+                  <span class="ph-radio-check">✓</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          @if (preferencesForm.get('gameType')?.value === 'spin') {
+            <div class="ph-form-section spin-type-section">
+              <div class="ph-onboarding-content__label">
+                Spin Type
+              </div>
+
+              <div class="ph-radio-group ph-radio-group-inline">
+                <label class="ph-radio-card">
+                  <input
+                      type="radio"
+                      formControlName="spinType"
+                      value="reg"
+                      class="ph-radio-input"
+                  />
+                  <div class="ph-radio-content">
+                    <span class="ph-radio-icon">⚡</span>
+                    <div class="ph-radio-text">
+                      <span class="ph-radio-title">Regular</span>
+                      <span class="ph-radio-desc">Standard Spin & Go</span>
+                    </div>
+                    <span class="ph-radio-check">✓</span>
+                  </div>
+                </label>
+
+                <label class="ph-radio-card">
+                  <input
+                      type="radio"
+                      formControlName="spinType"
+                      value="nitro"
+                      class="ph-radio-input"
+                  />
+                  <div class="ph-radio-content">
+                    <span class="ph-radio-icon">🚀</span>
+                    <div class="ph-radio-text">
+                      <span class="ph-radio-title">Nitro</span>
+                      <span class="ph-radio-desc">Turbo hyper-fast</span>
+                    </div>
+                    <span class="ph-radio-check">✓</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          }
+
+          <div class="ph-form-section">
+            <div class="ph-onboarding-content__label">
+              Stakes/Limits
+              <span class="ph-onboarding-content__label_small">(select all that apply)</span>
+            </div>
+
+            <div class="ph-multiselect-grid">
+              @for (limit of limitsOptions; track limit) {
+                <button
+                    type="button"
+                    class="ph-multiselect-chip"
+                    [class.ph-multiselect-chip-selected]="isLimitSelected(limit)"
+                    (click)="toggleLimit(limit)">
+                  <span class="chip-text">{{ limit }}</span>
+                  <lucide-icon class="ph-chip-check" [name]="'x-icon'" [size]="16"></lucide-icon>
+                </button>
+              }
+            </div>
+          </div>
+
+          <div class="ph-form-section">
+            <div class="ph-onboarding-content__label">
+              Poker Rooms
+              <span class="ph-onboarding-content__label_small">(select all that apply)</span>
+            </div>
+
+            <div class="ph-multiselect-grid">
+              @for (room of pokerRoomsOptions; track room) {
+                <button
+                    type="button"
+                    class="ph-multiselect-chip"
+                    [class.ph-multiselect-chip-selected]="isPokerRoomSelected(room)"
+                    (click)="togglePokerRoom(room)">
+                  <span class="chip-text">{{ room }}</span>
+                  <lucide-icon class="ph-chip-check" [name]="'x-icon'" [size]="16"></lucide-icon>
+                </button>
+              }
+            </div>
+          </div>
+
+        </form>
+
+        <div class="ph-step-actions">
+          <button
+              ph-button
+              [color]="'SECONDARY'"
+              (click)="prevStep()"
+              [size]="'M'"
+          >
+            Back
+          </button>
+
+          <button
+              class="ph-onboarding-btn"
+              ph-button
+              [disabled]="!preferencesForm.valid || loading()"
+              (click)="completeOnboarding()"
+              [isLoading]="loading()"
+              [size]="'M'"
+          >
+            Complete
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

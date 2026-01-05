@@ -1,5 +1,8 @@
 .ph-hero-avatar {
   position: relative;
+
+  border-width: 1px;
+  border-style: solid;
 }
 
 .ph-hero-avatar__img {
@@ -12,4 +15,6 @@
 
   object-fit: contain;
   pointer-events: none;
+
+  transform: scale(1.2);
 }
