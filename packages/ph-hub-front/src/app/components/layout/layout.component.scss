@@ -1,0 +1,19 @@
+@use '../../shared/scss/variables';
+
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  padding: 12px 12px 12px 0;
+  min-width: 0;
+}
+
+.ph-layout__main {
+  flex: 1;
+  overflow: auto;
+  background-color: variables.$bg-black-2;
+  border: 1px solid variables.$divider-1;
+  border-radius: 12px;
+}

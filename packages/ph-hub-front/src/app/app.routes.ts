@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { Demo } from './modules/demo/demo';
 import { demoRoutes } from './modules/demo/demo.routes';
 import { AuthCallbackComponent } from './components/auth-callback/auth-callback.component';
 import { LoginComponent } from './modules/auth/components/login/login.component';
@@ -8,13 +7,14 @@ import { guestGuard } from './guards/guest.guard';
 import { OnboardingComponent } from './modules/onboarding/components/onboarding/onboarding.component';
 import { onboardingGuard } from './guards/onboarding.guard';
 import { onboardingCompleteGuard } from './guards/onboarding-complete.guard';
+import { LayoutComponent } from './components/layout/layout.component';
 
 export const routes: Routes = [
-	{
-		path: '',
-		redirectTo: 'demo',
-		pathMatch: 'full',
-	},
+	// {
+	// 	path: '',
+	// 	redirectTo: 'demo',
+	// 	pathMatch: 'full',
+	// },
 	{
 		path: 'login',
 		component: LoginComponent,
@@ -30,9 +30,15 @@ export const routes: Routes = [
 		canActivate: [authGuard, onboardingCompleteGuard],
 	},
 	{
-		path: 'demo',
-		component: Demo,
+		path: '',
+		component: LayoutComponent,
 		canActivate: [authGuard, onboardingGuard],
-		children: demoRoutes,
+		children: [
+			{
+				path: 'demo',
+				loadComponent: () => import('./modules/demo/demo').then(m => m.Demo),
+				children: demoRoutes,
+			},
+		]
 	},
 ];

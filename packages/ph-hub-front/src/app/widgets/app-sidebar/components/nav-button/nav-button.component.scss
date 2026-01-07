@@ -1,0 +1,54 @@
+@use '../../../../shared/scss/variables';
+
+.ph-nav-button {
+  width: 56px;
+  border: none;
+  background: none;
+  padding: 8px 0;
+  color: variables.$white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &.isActive,
+  &:hover,
+  &:focus {
+    .ph-nav-button__icon {
+      background-color: variables.$bg-black-2;
+      border: 1px solid variables.$divider-1;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    .ph-nav-button__icon_svg {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.ph-nav-button__icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  position: relative;
+  margin: 0 auto;
+  transition: background 0.125s cubic-bezier(0.17, 0.67, 0.55, 1.09);
+
+  .ph-nav-button__icon_svg {
+    transition: transform 0.125s cubic-bezier(0.17, 0.67, 0.55, 1.09);
+  }
+}
+
+.ph-nav-button__label {
+  color: variables.$white;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 12px;
+  white-space: nowrap;
+  margin-top: 4px;
+}

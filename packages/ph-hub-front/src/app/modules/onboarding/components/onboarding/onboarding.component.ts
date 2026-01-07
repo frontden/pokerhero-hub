@@ -8,8 +8,8 @@ import { CreateHero } from '../../../hero-avatar/create-hero/create-hero.compone
 import { FormFieldComponent } from '../../../../widgets/form-field/form-field.component';
 import { FormFieldControlDirective } from '../../../../widgets/form-field/directories/form-field-control.directive';
 import { ButtonComponent } from '../../../../widgets/button/button.component';
-import { LucideAngularModule } from 'lucide-angular';
 import { CreateUserPreferencesRequest } from '@ph-hub/common';
+import { IconsModule } from '../../../icons/icons.module';
 
 @Component({
   selector: 'ph-onboarding',
@@ -21,7 +21,7 @@ import { CreateUserPreferencesRequest } from '@ph-hub/common';
     FormFieldComponent,
     FormFieldControlDirective,
     ButtonComponent,
-    LucideAngularModule
+    IconsModule,
   ],
   templateUrl: './onboarding.component.html',
   styleUrls: ['./onboarding.component.scss']
