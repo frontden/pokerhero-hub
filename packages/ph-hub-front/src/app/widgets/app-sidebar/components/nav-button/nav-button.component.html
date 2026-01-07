@@ -1,0 +1,12 @@
+<button
+    class="ph-nav-button"
+    [class.ph-nav-button--active]="isActive"
+    (click)="onClick()"
+    [attr.aria-label]="label"
+>
+  <div class="ph-nav-button__icon">
+    <lucide-icon class="ph-nav-button__icon_svg" [name]=iconName [size]="18" />
+  </div>
+
+  <div class="ph-nav-button__label">{{label}}</div>
+</button>

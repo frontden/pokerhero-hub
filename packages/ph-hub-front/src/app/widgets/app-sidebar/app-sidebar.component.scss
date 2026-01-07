@@ -1,0 +1,31 @@
+:host {
+  flex: 0 0 74px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ph-app-sidebar__header {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.ph-app-sidebar__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &--bottom {
+    margin-top: auto;
+  }
+}
+
+.ph-app-sidebar__switch-wrapper {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

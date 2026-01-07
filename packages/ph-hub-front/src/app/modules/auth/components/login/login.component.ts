@@ -84,7 +84,7 @@ export class LoginComponent implements OnDestroy {
     this.authService.verifyCode(email, code).subscribe({
       next: () => {
         this.loading.set(false);
-        this.router.navigate(['/demo']);
+        this.router.navigate(['/']);
       },
       error: (err) => {
         this.error.set(err.error?.message || 'Invalid code. Please try again.');

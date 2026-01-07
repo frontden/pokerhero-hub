@@ -1,0 +1,67 @@
+<div class="ph-app-sidebar__header">
+  <a routerLink="/">
+    <ph-hero-avatar
+        [details]="['assets/hero-avatar/body/hero.svg', 'assets/hero-avatar/mouth/mouth classy.svg', 'assets/hero-avatar/glasses/Wayfarer black.svg']"
+        [borderRadius]="50"
+        [borderColor]="'transparent'"
+        [background]="'transparent'"
+        [width]="70"
+        [height]="70">
+    </ph-hero-avatar>
+  </a>
+</div>
+
+<div class="ph-app-sidebar__content">
+  <ph-nav-button
+      path="/demo"
+      label="Demo"
+      iconName="mail"
+      [isActive]="isExactRouteActive('/demo')"
+      (navigate)="navigate($event)"
+  >
+  </ph-nav-button>
+
+  <ph-nav-button
+      path="/training"
+      label="Training"
+      iconName="dumbbell"
+      [isActive]="isRouteActive('/training')"
+      (navigate)="navigate($event)"
+  ></ph-nav-button>
+
+  <ph-nav-button
+      path="/charts"
+      label="Charts"
+      iconName="chart-bar-big"
+      [isActive]="isRouteActive('/charts')"
+      (navigate)="navigate($event)"
+  ></ph-nav-button>
+
+  <ph-nav-button
+      path="/media"
+      label="Media"
+      iconName="square-play"
+      [isActive]="isRouteActive('/media')"
+      (navigate)="navigate($event)"
+  ></ph-nav-button>
+
+</div>
+
+<div class="ph-app-sidebar__content ph-app-sidebar__content--bottom">
+  <div class="ph-app-sidebar__switch-wrapper">
+    <ph-nav-button
+        path="/settings"
+        iconName="settings"
+        [isActive]="isRouteActive('/settings')"
+        (navigate)="navigate($event)"
+    ></ph-nav-button>
+
+    <ph-hero-avatar [details]="profile().avatar"
+                    [borderRadius]="50"
+                    [borderColor]="'transparent'"
+                    [background]="'transparent'"
+                    [width]="50"
+                    [height]="50">
+    </ph-hero-avatar>
+  </div>
+</div>
