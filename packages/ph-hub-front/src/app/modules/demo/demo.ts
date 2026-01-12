@@ -11,35 +11,33 @@ import { AuthService } from '../../services/auth.service';
 import { ButtonComponent } from '../../widgets/button/button.component';
 
 @Component({
-	selector: 'ph-demo',
-	imports: [
-		RouterOutlet,
-		AsyncPipe,
-		ButtonComponent,
-	],
-	templateUrl: './demo.html',
-	styleUrl: './demo.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'ph-demo',
+  imports: [RouterOutlet, AsyncPipe, ButtonComponent],
+  templateUrl: './demo.html',
+  styleUrl: './demo.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Demo {
+  features = DEMO_FEATURE;
 
-	features = DEMO_FEATURE;
+  constructor(
+    private readonly router: Router,
+    private authService: AuthService,
+  ) {}
 
-	constructor(private readonly router: Router, private authService: AuthService) {}
+  private store = inject(Store);
 
-	private store = inject(Store);
+  changeFeature(feature: DEMO_FEATURE) {
+    this.router.navigate(['/', 'demo', feature]);
+  }
 
-	changeFeature(feature: DEMO_FEATURE) {
-		this.router.navigate(['/', 'demo', feature]);
-	}
+  user$: Observable<User> = inject(Store).select(UsersSelectors.user);
 
-	user$: Observable<User> = inject(Store).select(UsersSelectors.user);
+  ngOnInit() {
+    this.store.dispatch(new LoadUsers());
+  }
 
-	ngOnInit() {
-		this.store.dispatch(new LoadUsers());
-	}
-
-	logout() {
-		this.authService.logout();
-	}
+  logout() {
+    this.authService.logout();
+  }
 }

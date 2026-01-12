@@ -1,20 +1,16 @@
-<div class="ph-chart-editor-cell"
-     [class.ph-chart-editor-cell_signed]="isSigned()">
+<div class="ph-chart-editor-cell" [class.ph-chart-editor-cell_signed]="isSigned()">
+  @for (action of cell().actions; track action.type) {
+    <div
+      class="ph-chart-editor-cell__zone"
+      [style.background-color]="action.color"
+      [style.width]="action.frequency + '%'"
+    ></div>
+  }
 
-        @for(action of cell().actions; track action.type) {
-            <div class="ph-chart-editor-cell__zone"
-                 [style.background-color]="action.color"
-                 [style.width]="action.frequency + '%'">
-
-            </div>
-        }
-
-
-    <div class="ph-chart-editor-cell__title"
-        [class.ph-chart-editor-cell__title_signed]="cell().actions.length > 0">
-
-        {{ cell().label }}
-
-    </div>
-
+  <div
+    class="ph-chart-editor-cell__title"
+    [class.ph-chart-editor-cell__title_signed]="cell().actions.length > 0"
+  >
+    {{ cell().label }}
+  </div>
 </div>

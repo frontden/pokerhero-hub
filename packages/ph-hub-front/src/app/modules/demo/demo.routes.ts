@@ -3,12 +3,12 @@ import { CreateHeroDemo } from './create-hero-demo/create-hero-demo';
 import { CreateChartsDemo } from './create-charts-demo/create-charts-demo';
 
 export const demoRoutes: Routes = [
-	{
-		path: 'create-hero',
-		component: CreateHeroDemo,
-	},
-	{
-		path: 'charts',
-		component: CreateChartsDemo,
-	},
+  {
+    path: 'create-hero',
+    component: CreateHeroDemo,
+  },
+  {
+    path: 'charts',
+    component: CreateChartsDemo,
+  },
 ];
