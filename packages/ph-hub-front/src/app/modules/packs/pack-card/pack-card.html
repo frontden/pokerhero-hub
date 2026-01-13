@@ -1,0 +1,26 @@
+<div class="ph-pack-card" (click)="selected.emit()">
+    <div class="ph-pack-card__title">
+        {{ pack().title }}
+    </div>
+
+    <div class="ph-pack-card__description">
+        {{pack().description}}
+    </div>
+
+    <div class="ph-pack-card__info">
+        <div class="ph-pack-card__info-block">
+            <lucide-icon size="16" name="zap"></lucide-icon>
+            {{ pack().gameType }}
+        </div>
+        <div class="ph-pack-card__info-block">
+            <lucide-icon size="16" name="notebook-text"></lucide-icon>
+            12 charts
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

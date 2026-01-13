@@ -1,0 +1,21 @@
+
+<div class="ph-packs__title">
+    my packs
+</div>
+
+
+
+<div class="ph-packs">
+    @for (pack of mockPacks; track pack.id) {
+        <ph-pack-card
+                [pack]="pack"
+                (selected)="openPack(pack)"
+        >
+        </ph-pack-card>
+    }
+    <div class="ph-packs__new-pack-wrap">
+        New Pack <ph-button iconName="circle-plus" (click)="openCreatePackDialog()"></ph-button>
+    </div>
+
+</div>
+
