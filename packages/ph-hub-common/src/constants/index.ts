@@ -1,3 +1,7 @@
 export * from './chart-actions'
 export * from './combinations-map'
 export * from './default-action-color-settings'
+export * from './second-action-type'
+export * from './spin-action-type'
+export * from './spin-game-type'
+export * from './spin-players-count'

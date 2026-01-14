@@ -6,6 +6,13 @@ import { UserPreferencesEntity } from '../database/entities/user-preferences.ent
 import { CreateUserPreferencesDto } from './dto/create-user-preferences.dto';
 import { User, UserPreferences } from '@ph-hub/common';
 import { mapToUser, mapToUserPreferences } from './functions/user.mapper';
+import { OpponentTypeEntityEntity } from '../database/entities/opponent-type.entity';
+import {
+  DEFAULT_OPPONENT_TYPE_FISH,
+  DEFAULT_OPPONENT_TYPE_REG,
+} from '@ph-hub/common/lib/constants/default-opponent-types';
+import { HotkeySettingsEntity } from '../database/entities/hotkey-settings.entity';
+import { DEFAULT_HOTKEYS_SETTINGS } from '@ph-hub/common/lib/constants/default-hotkeys-settings';
 
 @Injectable()
 export class UsersService {
@@ -15,6 +22,12 @@ export class UsersService {
 
     @InjectRepository(UserPreferencesEntity)
     private preferencesRepository: Repository<UserPreferencesEntity>,
+
+    @InjectRepository(OpponentTypeEntityEntity)
+    private opponentTypeRepository: Repository<OpponentTypeEntityEntity>,
+
+    @InjectRepository(HotkeySettingsEntity)
+    private hotkeySettingsRepository: Repository<HotkeySettingsEntity>,
   ) {}
 
   async findAll(): Promise<User[]> {
@@ -91,6 +104,20 @@ export class UsersService {
     }
 
     await this.preferencesRepository.save(preferences);
+
+    const defaultOpponentTypes = [
+      { userId: user.id, ...DEFAULT_OPPONENT_TYPE_REG },
+      { userId: user.id, ...DEFAULT_OPPONENT_TYPE_FISH },
+    ];
+
+    await this.opponentTypeRepository.save(defaultOpponentTypes);
+
+    const defaultHotkeySettings = DEFAULT_HOTKEYS_SETTINGS.map((settings) => ({
+      ...settings,
+      userId: user.id,
+    }));
+
+    await this.hotkeySettingsRepository.save(defaultHotkeySettings);
 
     const updatedUser = await this.findOne(user.id);
     return mapToUser(updatedUser);

@@ -1,3 +1,6 @@
+import { OpponentType } from '../poker';
+import { HotkeySettingsInterface } from './action-settings';
+
 export interface User {
 	id?: number;
 	email: string;
@@ -11,6 +14,8 @@ export interface User {
 	updatedAt?: Date;
 	accessLevel: number;
 	preferences?: UserPreferences;
+	opponentTypes?: OpponentType[];
+	hotkeySettings?: HotkeySettingsInterface[];
 }
 
 export interface UserPreferences {

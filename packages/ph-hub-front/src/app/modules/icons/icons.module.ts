@@ -10,6 +10,9 @@ import {
   Settings,
   SquarePlay,
   XIcon,
+  Zap,
+  NotebookText,
+  CirclePlus,
 } from 'lucide-angular';
 
 @NgModule({
@@ -24,6 +27,9 @@ import {
       ChartBarBig,
       SquarePlay,
       Settings,
+      Zap,
+      NotebookText,
+      CirclePlus,
     })
   ],
   exports: [LucideAngularModule]

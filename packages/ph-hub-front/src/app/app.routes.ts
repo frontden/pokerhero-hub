@@ -8,6 +8,7 @@ import { OnboardingComponent } from './modules/onboarding/components/onboarding/
 import { onboardingGuard } from './guards/onboarding.guard';
 import { onboardingCompleteGuard } from './guards/onboarding-complete.guard';
 import { LayoutComponent } from './components/layout/layout.component';
+import { packsRoutes } from './modules/packs/packs.routes';
 
 export const routes: Routes = [
 	// {
@@ -38,6 +39,11 @@ export const routes: Routes = [
 				path: 'demo',
 				loadComponent: () => import('./modules/demo/demo').then(m => m.Demo),
 				children: demoRoutes,
+			},
+			{
+				path: 'packs',
+				loadComponent: () => import('./modules/packs/packs').then(m => m.Packs),
+				children: packsRoutes,
 			},
 		]
 	},

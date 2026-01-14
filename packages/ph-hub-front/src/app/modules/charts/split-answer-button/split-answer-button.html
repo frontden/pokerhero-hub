@@ -1,8 +1,8 @@
 <button (click)="selected.emit()">
-    @for(action of answer().actions; track answer(); let i = $index) {
-        {{action.type | actionTypeToLabel}}{{action.raiseAmount ? ' x' + action.raiseAmount : ''}}
-        @if (i < answer().actions.length - 1) {
-            {{' / '}}
-        }
+  @for (action of answer().actions; track answer(); let i = $index) {
+    {{ action.type | actionTypeToLabel }}{{ action.raiseAmount ? ' x' + action.raiseAmount : '' }}
+    @if (i < answer().actions.length - 1) {
+      {{ ' / ' }}
     }
+  }
 </button>

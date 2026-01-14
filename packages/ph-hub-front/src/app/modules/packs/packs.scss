@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  padding: 40px;
+}
+
+.ph-packs__title {
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+
+.ph-packs {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.ph-packs__new-pack-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  border: 1px dashed;
+  border-radius: 20px;
+  width: 310px;
+  height: 180px;
+}

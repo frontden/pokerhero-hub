@@ -1,4 +1,4 @@
 export enum DEMO_FEATURE {
-	CREATE_HERO = 'create-hero',
-	CHARTS = 'charts',
+  CREATE_HERO = 'create-hero',
+  CHARTS = 'charts',
 }

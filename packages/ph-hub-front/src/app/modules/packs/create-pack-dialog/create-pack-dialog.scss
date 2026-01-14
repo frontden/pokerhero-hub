@@ -1,0 +1,20 @@
+@use '../../../shared/scss/variables';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 480px;
+  height: 480px;
+  padding: 20px;
+  gap: 20px;
+  background: rgba(variables.$buttons-dark-1, 0.96);
+  border: 1px solid variables.$divider-1;
+  box-shadow: variables.$modal-shadow;
+  border-radius: 16px;
+}
+
+.ph-create-pack-dialog__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

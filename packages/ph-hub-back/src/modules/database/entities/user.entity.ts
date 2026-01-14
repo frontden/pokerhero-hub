@@ -5,9 +5,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToOne,
+  OneToMany,
 } from 'typeorm';
 import { AccessLevel } from '../../../shared/constants';
 import { UserPreferencesEntity } from './user-preferences.entity';
+import { OpponentTypeEntityEntity } from './opponent-type.entity';
+import { HotkeySettingsEntity } from './hotkey-settings.entity';
 
 @Entity('users')
 export class UserEntity {
@@ -55,6 +58,26 @@ export class UserEntity {
     cascade: true,
   })
   preferences: UserPreferencesEntity;
+
+  @OneToMany(
+    () => OpponentTypeEntityEntity,
+    (oppType: OpponentTypeEntityEntity) => oppType.user,
+    {
+      eager: true,
+      cascade: true,
+    },
+  )
+  opponentTypes: OpponentTypeEntityEntity[];
+
+  @OneToMany(
+    () => HotkeySettingsEntity,
+    (hotkeySettings: HotkeySettingsEntity) => hotkeySettings.user,
+    {
+      eager: true,
+      cascade: true,
+    },
+  )
+  hotkeySettings: HotkeySettingsEntity[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

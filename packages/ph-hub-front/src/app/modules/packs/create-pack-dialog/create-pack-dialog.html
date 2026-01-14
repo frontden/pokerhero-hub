@@ -1,0 +1,37 @@
+<p>Create Pack</p>
+<form [formGroup]="form" class="ph-create-pack-dialog__form">
+    <ph-form-field size="M" label="Pack Name">
+        <input type="text"
+               formControlName="title"
+               phFormFieldControl/>
+    </ph-form-field>
+
+    <ph-form-field size="M" label="Game Type">
+        <label>
+            <input
+                    type="radio"
+                    formControlName="gameType"
+                    [value]="gameTypes.regular"
+            />
+            {{ gameTypes.regular }}
+        </label>
+
+        <label>
+            <input
+                    type="radio"
+                    formControlName="gameType"
+                    value="gameTypes.nitro"
+            />
+            {{ gameTypes.nitro }}
+        </label>
+    </ph-form-field>
+    <ph-form-field size="M" label="Short Description">
+        <input type="text"
+               formControlName="title"
+               phFormFieldControl/>
+    </ph-form-field>
+
+</form>
+
+<ph-button [disabled]="form.invalid" (click)="createPack()">Create Pack</ph-button>
+

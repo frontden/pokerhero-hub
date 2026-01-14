@@ -1,0 +1,43 @@
+@use '../../../shared/scss/variables';
+
+.ph-pack-card {
+  display: flex;
+  flex-direction: column;
+  width: 310px;
+  height: 180px;
+  border-radius: 20px;
+  padding: 24px;
+  background: rgba(variables.$buttons-dark-1, 0.96);
+  border: 1px solid variables.$divider-1;
+  box-shadow: variables.$modal-shadow;
+  transition: all 0.3s ease-in;
+  &:hover {
+    cursor: pointer;
+    border: 1px solid white;
+    background: rgba(variables.$buttons-dark-2, 0.96);
+  }
+}
+
+.ph-pack-card__title {
+  color: variables.$text-white-1;
+  font-size: 22px;
+  height: 30px;
+}
+
+.ph-pack-card__description {
+  padding-top: 12px;
+  height: 72px;
+  font-style: italic;
+}
+
+.ph-pack-card__info {
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+}
+
+.ph-pack-card__info-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
