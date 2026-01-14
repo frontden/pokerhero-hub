@@ -1,5 +1,5 @@
 import { OpponentType } from '../poker';
-import { CHART_ACTIONS, SecondActionType, SpinActionType, SpinPlayersCount } from '../../constants';
+import { SecondActionType, SpinActionType, SpinPlayersCount } from '../../constants';
 
 export interface Chart {
 	id?: number;
@@ -13,26 +13,20 @@ export interface Chart {
 }
 
 export interface ChartRange {
+	id?: number;
 	minStack: number;
 	maxStack: number;
 	combinations: string;
+	answers: string;
+	splitAnswers: string;
 	secondActions: SecondAction[];
-	answers: RangeAnswer[];
-	splitAnswers: RangeSplitAnswer[];
-}
-
-export interface RangeAnswer {
-	type: CHART_ACTIONS;
-	amount?: number;
-	weight?: number;
-}
-
-export interface RangeSplitAnswer {
-	answers: RangeAnswer[];
 }
 
 export interface SecondAction {
+	id?: number;
 	type: SecondActionType;
 	amount?: number;
 	combinations: string;
+	answers: string;
+	splitAnswers: string;
 }

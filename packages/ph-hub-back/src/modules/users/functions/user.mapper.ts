@@ -1,6 +1,7 @@
 import { UserEntity } from '../../database/entities/user.entity';
 import { User, UserPreferences } from '@ph-hub/common';
 import { UserPreferencesEntity } from '../../database/entities/user-preferences.entity';
+import { mapToOpponentType } from '../../charts/functions/opponent-type.mapper';
 
 export function mapToUser(user: UserEntity): User {
   return {
@@ -18,6 +19,8 @@ export function mapToUser(user: UserEntity): User {
     preferences: user.preferences
       ? mapToUserPreferences(user.preferences)
       : undefined,
+    opponentTypes:
+      user.opponentTypes?.map((oppType) => mapToOpponentType(oppType)) ?? [],
   };
 }
 
